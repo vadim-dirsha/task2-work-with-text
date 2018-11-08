@@ -21,51 +21,64 @@ import java.util.List;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public class TextCollection extends TextUnit implements ITextUnitCollection {
-    private List<ITextUnit> mCollection;
+public class TextCollection extends AbstractTextUnit implements ITextUnitCollection {
+    private List<ITextUnit> collection;
 
     TextCollection() {
-        this.mCollection = new ArrayList<>();
+        this.collection = new ArrayList<>();
     }
 
     @Override
     public ITextUnit get(int i) {
-        return mCollection.get(i);
+        return collection.get(i);
     }
 
     @Override
     public boolean add(ITextUnit e) {
-        return mCollection.add(e);
+        return collection.add(e);
     }
 
     @Override
     public boolean addAll(List<ITextUnit> e) {
-        return mCollection.addAll(e);
+        return collection.addAll(e);
     }
 
     @Override
     public void clear() {
-        mCollection.clear();
+        collection.clear();
     }
 
     @Override
     public boolean isEmpty() {
-        return mCollection.isEmpty();
+        return collection.isEmpty();
     }
 
     @Override
     public boolean remove(ITextUnit e) {
-        return mCollection.remove(e);
+        return collection.remove(e);
     }
 
     @Override
     public int size() {
-        return mCollection.size();
+        return collection.size();
     }
 
     @Override
-    public String getValue() throws IllegalAccessException {
-        //TODO it looks stupid
-        throw new IllegalAccessException();
+    public void parseCollection() {
+
+    }
+
+    @Override
+    public String toText() {
+        StringBuilder result = new StringBuilder();
+        for (ITextUnit unit : collection) {
+            result.append(unit.toText());
+        }
+        return String.join("", leftSide, result, rightSide);
+    }
+
+    @Override
+    public ITextUnit createTextUnit() {
+        return null;
     }
 }

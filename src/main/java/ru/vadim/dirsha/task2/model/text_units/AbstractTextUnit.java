@@ -14,27 +14,32 @@
  */
 package ru.vadim.dirsha.task2.model.text_units;
 
-import java.util.List;
-
 /**
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public interface ITextUnitCollection {
+public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
 
-    ITextUnit get(int i);
+    protected String data;
+    protected String leftSide;
+    protected String rightSide;
+    //TODO не клеится, нужно поле в котором будут хранится отпаршенные значения.... Object?
 
-    boolean add(ITextUnit e);
+    public AbstractTextUnit(String data){
+        this.data = data;
+    }
 
-    boolean addAll(List<ITextUnit> e);
+    @Override
+    public String getLeftSide() {
+        return leftSide;
+    }
 
-    void clear();
+    @Override
+    public String getRightSide() {
+        return rightSide;
+    }
 
-    boolean isEmpty();
-
-    boolean remove(ITextUnit e);
-
-    int size();
-
-    void parseCollection();
+    public void paarseCollection(){
+        
+    }
 }

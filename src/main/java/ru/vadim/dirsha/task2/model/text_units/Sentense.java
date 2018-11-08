@@ -18,10 +18,16 @@ package ru.vadim.dirsha.task2.model.text_units;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public class TextUnitCreator implements ITextUnitCreator {
+public class Sentense extends AbstractTextUnit {
     @Override
-    public ITextUnit create() {
-        //TODO x
+    public String toText() {
         return null;
     }
+
+    @Override
+    public ITextUnit createTextUnit() {
+        return null;
+    }
+
+
 }

@@ -20,9 +20,10 @@ package ru.vadim.dirsha.task2.model.text_units;
  */
 public interface ITextUnit {
 
-    String getValue() throws IllegalAccessException;
     String getLeftSide();
+
     String getRightSide();
+
     String toText();
 
 }
