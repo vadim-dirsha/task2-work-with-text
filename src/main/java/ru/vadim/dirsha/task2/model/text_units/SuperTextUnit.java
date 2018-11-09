@@ -16,24 +16,16 @@ package ru.vadim.dirsha.task2.model.text_units;
 
 /**
  * @author = Vadim Dirsha
- * @date = 08.11.2018
+ * @date = 09.11.2018
  */
-public abstract class AbstractTextUnit<E> implements ITextUnit, ITextUnitCreator {
+public abstract class SuperTextUnit<E> implements ISuperTextUnit<E> {
+    protected E value;
+    protected String leftSide;
+    protected String rightSide;
 
-    protected String data;
-    protected SuperTextUnit<E> value;
-    //TODO всеравно хрень, прочекать тот способ обьединить композит и фабричный метод
-
-    public AbstractTextUnit(String data){
-        this.data = data;
-    }
-
-    @Override
-    public String toText(){
-        return data;
-    }
-
-    public void paarseCollection(){
-
+    public SuperTextUnit(E value, String leftSide, String rightSide) {
+        this.value = value;
+        this.leftSide = leftSide;
+        this.rightSide = rightSide;
     }
 }

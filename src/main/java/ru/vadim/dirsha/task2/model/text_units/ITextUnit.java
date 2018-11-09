@@ -20,10 +20,6 @@ package ru.vadim.dirsha.task2.model.text_units;
  */
 public interface ITextUnit {
 
-    String getLeftSide();
-
-    String getRightSide();
-
     String toText();
 
 }
