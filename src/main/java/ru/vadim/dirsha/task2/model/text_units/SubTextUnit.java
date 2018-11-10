@@ -12,20 +12,25 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units_alternative;
-
-import java.util.List;
+package ru.vadim.dirsha.task2.model.text_units;
 
 /**
  * @author = Vadim Dirsha
  * @date = 10.11.2018
  */
-public abstract class AbstractTextUnitCollection implements ITextUnit, ITextUnitCollection, ITextUnitCollectionCreator {
+public class SubTextUnit<E> extends AbstractSubTextUnit<E> {
+    @Override
+    public E getValue() {
+        return value;
+    }
 
-    AbstractSubTextUnit<List<ITextUnit>> value;
+    @Override
+    public String getLeftSide() {
+        return leftSide;
+    }
 
-
-    public AbstractTextUnitCollection(String data) {
-        this.value = parseDataToTextUnit(data);
+    @Override
+    public String getRightSide() {
+        return rightSide;
     }
 }

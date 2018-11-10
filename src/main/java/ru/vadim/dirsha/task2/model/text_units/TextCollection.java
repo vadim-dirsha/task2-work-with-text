@@ -21,6 +21,7 @@ import java.util.List;
  * @date = 08.11.2018
  */
 public class TextCollection<E extends List<? extends ITextUnit>> extends AbstractTextUnit<E> implements ITextUnitCollection {
+
     public TextCollection(String data) {
         super(data);
     }
