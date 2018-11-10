@@ -18,18 +18,25 @@ package ru.vadim.dirsha.task2.model.text_units;
  * @author = Vadim Dirsha
  * @date = 10.11.2018
  */
-public class SubTextUnit<E> extends AbstractSubTextUnit<E> {
-    @Override
+public class SubTextUnit<E> {
+    private E value;
+    private String leftSide;
+    private String rightSide;
+
+    public SubTextUnit(E value, String leftSide, String rightSide) {
+        this.value = value;
+        this.leftSide = leftSide;
+        this.rightSide = rightSide;
+    }
+
     public E getValue() {
         return value;
     }
 
-    @Override
     public String getLeftSide() {
         return leftSide;
     }
 
-    @Override
     public String getRightSide() {
         return rightSide;
     }

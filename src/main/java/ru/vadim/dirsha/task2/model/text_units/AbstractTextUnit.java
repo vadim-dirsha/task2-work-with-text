@@ -18,7 +18,7 @@ package ru.vadim.dirsha.task2.model.text_units;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public abstract class AbstractTextUnit<E> extends AbstractSubTextUnit<E> implements ITextUnit, ITextUnitCreator<E> {
+public abstract class AbstractTextUnit<E> extends SubTextUnit<E> implements ITextUnit, ITextUnitCreator<E> {
 
     public AbstractTextUnit(String data) {
         this.value = parseDataToTextUnit(data);
