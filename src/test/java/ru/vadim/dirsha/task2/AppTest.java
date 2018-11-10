@@ -1,4 +1,4 @@
-package ru.vadim.dirsha.java;
+package ru.vadim.dirsha.task2;
 
 import static org.junit.Assert.assertTrue;
 
