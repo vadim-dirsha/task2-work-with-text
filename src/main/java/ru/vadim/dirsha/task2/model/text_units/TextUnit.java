@@ -16,16 +16,36 @@ package ru.vadim.dirsha.task2.model.text_units;
 
 /**
  * @author = Vadim Dirsha
- * @date = 09.11.2018
+ * @date = 08.11.2018
  */
-public abstract class SuperTextUnit<E> implements ISuperTextUnit<E> {
-    protected E value;
-    protected String leftSide;
-    protected String rightSide;
+public class TextUnit<E> extends AbstractTextUnit<E> {
 
-    public SuperTextUnit(E value, String leftSide, String rightSide) {
-        this.value = value;
-        this.leftSide = leftSide;
-        this.rightSide = rightSide;
+    public TextUnit(String data) {
+        super(data);
+    }
+
+    @Override
+    public E getValue() {
+        return null;
+    }
+
+    @Override
+    public String getLeftSide() {
+        return null;
+    }
+
+    @Override
+    public String getRightSide() {
+        return null;
+    }
+
+    @Override
+    public String toText() {
+        return null;
+    }
+
+    @Override
+    public E parseDataToTextUnit(String data) {
+        return null;
     }
 }

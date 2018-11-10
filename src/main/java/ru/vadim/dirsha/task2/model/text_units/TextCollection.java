@@ -14,53 +14,70 @@
  */
 package ru.vadim.dirsha.task2.model.text_units;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public class TextCollection extends AbstractTextUnit implements ITextUnitCollection {
-    private List<ITextUnit> collection;
+public class TextCollection<E extends List<? extends ITextUnit>> extends AbstractTextUnit<E> implements ITextUnitCollection {
+    public TextCollection(String data) {
+        super(data);
+    }
 
-    TextCollection() {
-        this.collection = new ArrayList<>();
+    @Override
+    public E getValue() {
+        return null;
+    }
+
+    @Override
+    public String getLeftSide() {
+        return null;
+    }
+
+    @Override
+    public String getRightSide() {
+        return null;
+    }
+
+    @Override
+    public String toText() {
+        return null;
     }
 
     @Override
     public ITextUnit get(int i) {
-        return collection.get(i);
+        return null;
     }
 
     @Override
     public boolean add(ITextUnit e) {
-        return collection.add(e);
+        return false;
     }
 
     @Override
     public boolean addAll(List<ITextUnit> e) {
-        return collection.addAll(e);
+        return false;
     }
 
     @Override
     public void clear() {
-        collection.clear();
+
     }
 
     @Override
     public boolean isEmpty() {
-        return collection.isEmpty();
+        return false;
     }
 
     @Override
     public boolean remove(ITextUnit e) {
-        return collection.remove(e);
+        return false;
     }
 
     @Override
     public int size() {
-        return collection.size();
+        return 0;
     }
 
     @Override
@@ -69,16 +86,7 @@ public class TextCollection extends AbstractTextUnit implements ITextUnitCollect
     }
 
     @Override
-    public String toText() {
-        StringBuilder result = new StringBuilder();
-        for (ITextUnit unit : collection) {
-            result.append(unit.toText());
-        }
-        return String.join("", leftSide, result, rightSide);
-    }
-
-    @Override
-    public ITextUnit createTextUnit() {
+    public E parseDataToTextUnit(String data) {
         return null;
     }
 }

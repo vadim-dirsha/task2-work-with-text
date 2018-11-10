@@ -16,18 +16,12 @@ package ru.vadim.dirsha.task2.model.text_units;
 
 /**
  * @author = Vadim Dirsha
- * @date = 08.11.2018
+ * @date = 10.11.2018
  */
-public class Sentense extends AbstractTextUnit {
-    @Override
-    public String toText() {
-        return null;
-    }
+public interface ISubTextUnit<E> {
 
-    @Override
-    public ITextUnit createTextUnit() {
-        return null;
-    }
-
+    E getValue();
+    String getLeftSide();
+    String getRightSide();
 
 }

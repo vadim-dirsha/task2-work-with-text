@@ -16,13 +16,11 @@ package ru.vadim.dirsha.task2.model.text_units;
 
 /**
  * @author = Vadim Dirsha
- * @date = 09.11.2018
+ * @date = 10.11.2018
  */
-public interface ISuperTextUnit<E> {
-    E getValue();
-
-    String getLeftSide();
-
-    String getRightSide();
+public abstract class AbstractSubTextUnit<E> implements ISubTextUnit<E> {
+    protected E value;
+    protected String leftSide;
+    protected String rightSide;
 
 }

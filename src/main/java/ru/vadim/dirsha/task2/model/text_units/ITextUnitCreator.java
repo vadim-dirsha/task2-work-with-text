@@ -18,6 +18,6 @@ package ru.vadim.dirsha.task2.model.text_units;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public interface ITextUnitCreator {
-    ITextUnit createTextUnit();
+public interface ITextUnitCreator<E> {
+    E parseDataToTextUnit(String data);
 }
