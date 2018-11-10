@@ -12,27 +12,29 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units;
-
-import java.util.List;
+package ru.vadim.dirsha.task2.model.text_units_alternative;
 
 /**
  * @author = Vadim Dirsha
- * @date = 08.11.2018
+ * @date = 10.11.2018
  */
-public interface ITextUnitCollection {
+public class SubTextUnit extends AbstractSubTextUnit<String> {
+    public SubTextUnit(String value, String leftSide, String rightSide) {
+        super(value, leftSide, rightSide);
+    }
 
-    ITextUnit get(int i);
+    @Override
+    public String getValue() {
+        return null;
+    }
 
-    boolean add(ITextUnit e);
+    @Override
+    public String getLeftSide() {
+        return null;
+    }
 
-    boolean addAll(List<ITextUnit> e);
-
-    void clear();
-
-    boolean isEmpty();
-
-    boolean remove(ITextUnit e);
-
-    int size();
+    @Override
+    public String getRightSide() {
+        return null;
+    }
 }

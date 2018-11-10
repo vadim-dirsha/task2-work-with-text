@@ -12,7 +12,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units;
+package ru.vadim.dirsha.task2.model.text_units_alternative;
 
 import java.util.List;
 
@@ -20,24 +20,10 @@ import java.util.List;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public class TextCollection<E extends List<? extends ITextUnit>> extends AbstractTextUnit<E> implements ITextUnitCollection {
+public class TextCollection extends AbstractTextUnitCollection {
+
     public TextCollection(String data) {
         super(data);
-    }
-
-    @Override
-    public E getValue() {
-        return null;
-    }
-
-    @Override
-    public String getLeftSide() {
-        return null;
-    }
-
-    @Override
-    public String getRightSide() {
-        return null;
     }
 
     @Override
@@ -81,7 +67,7 @@ public class TextCollection<E extends List<? extends ITextUnit>> extends Abstrac
     }
 
     @Override
-    public E parseDataToTextUnit(String data) {
+    public AbstractSubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data) {
         return null;
     }
 }

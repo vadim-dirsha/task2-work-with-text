@@ -12,7 +12,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units;
+package ru.vadim.dirsha.task2.model.text_units_alternative;
 
 import java.util.List;
 
@@ -20,19 +20,6 @@ import java.util.List;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public interface ITextUnitCollection {
-
-    ITextUnit get(int i);
-
-    boolean add(ITextUnit e);
-
-    boolean addAll(List<ITextUnit> e);
-
-    void clear();
-
-    boolean isEmpty();
-
-    boolean remove(ITextUnit e);
-
-    int size();
+public interface ITextUnitCollectionCreator {
+    AbstractSubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data);
 }

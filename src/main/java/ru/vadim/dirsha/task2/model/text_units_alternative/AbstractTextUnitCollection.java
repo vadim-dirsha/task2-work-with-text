@@ -12,27 +12,21 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units;
+package ru.vadim.dirsha.task2.model.text_units_alternative;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author = Vadim Dirsha
- * @date = 08.11.2018
+ * @date = 10.11.2018
  */
-public interface ITextUnitCollection {
+public abstract class AbstractTextUnitCollection implements ITextUnit, ITextUnitCollection, ITextUnitCollectionCreator {
 
-    ITextUnit get(int i);
+    AbstractSubTextUnit<List<ITextUnit>> value;
 
-    boolean add(ITextUnit e);
 
-    boolean addAll(List<ITextUnit> e);
-
-    void clear();
-
-    boolean isEmpty();
-
-    boolean remove(ITextUnit e);
-
-    int size();
+    public AbstractTextUnitCollection(String data) {
+        this.value = parseDataToTextUnit(data);
+    }
 }
