@@ -27,21 +27,6 @@ public class TextCollection<E extends List<? extends ITextUnit>> extends Abstrac
     }
 
     @Override
-    public E getValue() {
-        return null;
-    }
-
-    @Override
-    public String getLeftSide() {
-        return null;
-    }
-
-    @Override
-    public String getRightSide() {
-        return null;
-    }
-
-    @Override
     public String toText() {
         return null;
     }
@@ -82,7 +67,7 @@ public class TextCollection<E extends List<? extends ITextUnit>> extends Abstrac
     }
 
     @Override
-    public E parseDataToTextUnit(String data) {
+    public SubTextUnit<E> parseDataToTextUnit(String data) {
         return null;
     }
 }

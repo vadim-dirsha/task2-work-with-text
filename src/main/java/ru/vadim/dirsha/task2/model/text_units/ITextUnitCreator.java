@@ -19,5 +19,5 @@ package ru.vadim.dirsha.task2.model.text_units;
  * @date = 08.11.2018
  */
 public interface ITextUnitCreator<E> {
-    E parseDataToTextUnit(String data);
+    SubTextUnit<E> parseDataToTextUnit(String data);
 }
