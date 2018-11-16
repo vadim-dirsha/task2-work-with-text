@@ -18,7 +18,7 @@ package ru.vadim.dirsha.task2.model.text_units.abstract_units;
  * @author = Vadim Dirsha
  * @date = 10.11.2018
  */
-class SubTextUnit<E> {
+public class SubTextUnit<E> {
     protected E value;
     protected String leftSide;
     protected String rightSide;

@@ -20,12 +20,12 @@ import java.util.List;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public abstract class AbstractTextCollection extends AbstractTextUnit implements ITextUnitCollection {
+public abstract class AbstractTextCollection implements ITextUnit, ITextUnitCollection, ITextUnitCollectionCreator {
 
     private SubTextUnit<List<ITextUnit>> value;
 
     public AbstractTextCollection(String data) {
-        super(data);
+        this.value = parseDataToTextUnitCollection(data);
     }
 
     @Override
@@ -61,6 +61,16 @@ public abstract class AbstractTextCollection extends AbstractTextUnit implements
     @Override
     public int size() {
         return value.getValue().size();
+    }
+
+    @Override
+    public String getLeftSide() {
+        return value.getLeftSide();
+    }
+
+    @Override
+    public String getRightSide() {
+        return value.getRightSide();
     }
 
 

@@ -21,5 +21,5 @@ import java.util.List;
  * @date = 11.11.2018
  */
 interface ITextUnitCollectionCreator {
-    SubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data);
+    SubTextUnit<List<ITextUnit>> parseDataToTextUnitCollection(String data);
 }
