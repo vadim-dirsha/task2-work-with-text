@@ -73,5 +73,14 @@ public abstract class AbstractTextCollection implements ITextUnit, ITextUnitColl
         return value.getRightSide();
     }
 
+    @Override
+    public String toText() {
+        StringBuilder result = new StringBuilder();
+        for (ITextUnit unit : value.getValue()) {
+            result.append(unit.toText());
+        }
+        return result.toString();
+    }
+
 
 }

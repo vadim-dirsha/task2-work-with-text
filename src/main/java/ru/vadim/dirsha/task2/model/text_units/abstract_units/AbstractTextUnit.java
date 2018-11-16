@@ -27,13 +27,18 @@ public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
     }
 
     @Override
-    public String getLeftSide(){
+    public String getLeftSide() {
         return value.getLeftSide();
     }
 
     @Override
-    public String getRightSide(){
+    public String getRightSide() {
         return value.getRightSide();
+    }
+
+    @Override
+    public String toText() {
+        return String.join("", value.getLeftSide(), value.getValue(), value.getRightSide());
     }
 
 }
