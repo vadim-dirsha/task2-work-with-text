@@ -19,9 +19,9 @@ package ru.vadim.dirsha.task2.model.text_units.abstract_units;
  * @date = 10.11.2018
  */
 public class SubTextUnit<E> {
-    protected E value;
-    protected String leftSide;
-    protected String rightSide;
+    private E value;
+    private String leftSide;
+    private String rightSide;
 
     public SubTextUnit(E value, String leftSide, String rightSide) {
         this.value = value;
