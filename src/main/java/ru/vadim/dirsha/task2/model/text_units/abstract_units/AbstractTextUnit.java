@@ -20,8 +20,7 @@ package ru.vadim.dirsha.task2.model.text_units.abstract_units;
  */
 public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
 
-    //TODO check modi
-    private SubTextUnit<String> value;
+    protected SubTextUnit<String> value;
 
     public AbstractTextUnit(String data) {
         this.value = parseDataToTextUnit(data);

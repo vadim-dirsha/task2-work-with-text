@@ -22,7 +22,7 @@ import java.util.List;
  */
 public abstract class AbstractTextCollection implements ITextUnit, ITextUnitCollection, ITextUnitCollectionCreator {
 
-    private SubTextUnit<List<ITextUnit>> value;
+    protected SubTextUnit<List<ITextUnit>> value;
 
     public AbstractTextCollection(String data) {
         this.value = parseDataToTextUnitCollection(data);
