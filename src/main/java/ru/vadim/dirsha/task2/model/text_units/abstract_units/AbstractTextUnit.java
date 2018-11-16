@@ -12,29 +12,29 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units_alternative;
+package ru.vadim.dirsha.task2.model.text_units.abstract_units;
 
 /**
  * @author = Vadim Dirsha
- * @date = 10.11.2018
+ * @date = 08.11.2018
  */
-public class SubTextUnit extends AbstractSubTextUnit<String> {
-    public SubTextUnit(String value, String leftSide, String rightSide) {
-        super(value, leftSide, rightSide);
+public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
+
+    //TODO check modi
+    private SubTextUnit<String> value;
+
+    public AbstractTextUnit(String data) {
+        this.value = parseDataToTextUnit(data);
     }
 
     @Override
-    public String getValue() {
-        return null;
+    public String getLeftSide(){
+        return value.getLeftSide();
     }
 
     @Override
-    public String getLeftSide() {
-        return null;
+    public String getRightSide(){
+        return value.getRightSide();
     }
 
-    @Override
-    public String getRightSide() {
-        return null;
-    }
 }

@@ -12,20 +12,32 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units_alternative;
+package ru.vadim.dirsha.task2.model.text_units.abstract_units;
 
 /**
  * @author = Vadim Dirsha
  * @date = 10.11.2018
  */
-public abstract class AbstractSubTextUnit<E> implements ISubTextUnit<E> {
+class SubTextUnit<E> {
     protected E value;
     protected String leftSide;
     protected String rightSide;
 
-    public AbstractSubTextUnit(E value, String leftSide, String rightSide) {
+    public SubTextUnit(E value, String leftSide, String rightSide) {
         this.value = value;
         this.leftSide = leftSide;
         this.rightSide = rightSide;
+    }
+
+    public E getValue() {
+        return value;
+    }
+
+    public String getLeftSide() {
+        return leftSide;
+    }
+
+    public String getRightSide() {
+        return rightSide;
     }
 }
