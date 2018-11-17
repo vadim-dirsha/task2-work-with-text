@@ -40,4 +40,9 @@ public class SubTextUnit<E> {
     public String getRightSide() {
         return rightSide;
     }
+
+    @Override
+    public String toString(){
+        return value.toString() + leftSide + rightSide;
+    }
 }

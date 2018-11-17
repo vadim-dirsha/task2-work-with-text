@@ -10,6 +10,7 @@ public class Word extends AbstractTextUnit {
 
     @Override
     public SubTextUnit parseDataToTextUnit(String data) {
-        return null;
+        
+        return new SubTextUnit("","","");
     }
 }

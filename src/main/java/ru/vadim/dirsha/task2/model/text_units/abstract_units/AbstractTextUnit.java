@@ -26,6 +26,10 @@ public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
         this.value = parseDataToTextUnit(data);
     }
 
+    public String getWord(){
+        return  value.getValue();
+    }
+
     @Override
     public String getLeftSide() {
         return value.getLeftSide();
