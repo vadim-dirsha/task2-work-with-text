@@ -12,7 +12,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units_alternative;
+package ru.vadim.dirsha.task2.model.text_units.abstract_units;
 
 import java.util.List;
 
@@ -20,54 +20,67 @@ import java.util.List;
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public class TextCollection extends AbstractTextUnitCollection {
+public abstract class AbstractTextCollection implements ITextUnit, ITextUnitCollection, ITextUnitCollectionCreator {
 
-    public TextCollection(String data) {
-        super(data);
-    }
+    protected SubTextUnit<List<ITextUnit>> value;
 
-    @Override
-    public String toText() {
-        return null;
+    public AbstractTextCollection(String data) {
+        this.value = parseDataToTextUnitCollection(data);
     }
 
     @Override
     public ITextUnit get(int i) {
-        return null;
+        return value.getValue().get(i);
     }
 
     @Override
     public boolean add(ITextUnit e) {
-        return false;
+        return value.getValue().add(e);
     }
 
     @Override
     public boolean addAll(List<ITextUnit> e) {
-        return false;
+        return value.getValue().addAll(e);
     }
 
     @Override
     public void clear() {
-
+        value.getValue().clear();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return value.getValue().isEmpty();
     }
 
     @Override
     public boolean remove(ITextUnit e) {
-        return false;
+        return value.getValue().remove(e);
     }
 
     @Override
     public int size() {
-        return 0;
+        return value.getValue().size();
     }
 
     @Override
-    public AbstractSubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data) {
-        return null;
+    public String getLeftSide() {
+        return value.getLeftSide();
     }
+
+    @Override
+    public String getRightSide() {
+        return value.getRightSide();
+    }
+
+    @Override
+    public String toText() {
+        StringBuilder result = new StringBuilder();
+        for (ITextUnit unit : value.getValue()) {
+            result.append(unit.toText());
+        }
+        return result.toString();
+    }
+
+
 }

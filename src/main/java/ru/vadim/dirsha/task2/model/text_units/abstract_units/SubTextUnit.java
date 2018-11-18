@@ -12,29 +12,42 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units_alternative;
+package ru.vadim.dirsha.task2.model.text_units.abstract_units;
 
 /**
  * @author = Vadim Dirsha
  * @date = 10.11.2018
  */
-public class SubTextUnit extends AbstractSubTextUnit<String> {
-    public SubTextUnit(String value, String leftSide, String rightSide) {
-        super(value, leftSide, rightSide);
+public class SubTextUnit<E> {
+    private E value;
+    private String leftSide;
+    private String rightSide;
+
+    public SubTextUnit() {
+        this.leftSide = "";
+        this.rightSide = "";
     }
 
-    @Override
-    public String getValue() {
-        return null;
+    public SubTextUnit(E value, String leftSide, String rightSide) {
+        this.value = value;
+        this.leftSide = leftSide;
+        this.rightSide = rightSide;
     }
 
-    @Override
+    public E getValue() {
+        return value;
+    }
+
     public String getLeftSide() {
-        return null;
+        return leftSide;
+    }
+
+    public String getRightSide() {
+        return rightSide;
     }
 
     @Override
-    public String getRightSide() {
-        return null;
+    public String toString() {
+        return value.toString() + leftSide + rightSide;
     }
 }

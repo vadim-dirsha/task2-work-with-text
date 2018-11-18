@@ -12,17 +12,37 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units;
+package ru.vadim.dirsha.task2.model.text_units.abstract_units;
 
 /**
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public abstract class AbstractTextUnit<E> implements ITextUnit, ITextUnitCreator<E> {
+public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
 
-    protected SubTextUnit<E> value;
+    protected SubTextUnit<String> value;
+
     public AbstractTextUnit(String data) {
         this.value = parseDataToTextUnit(data);
+    }
+
+    public String getWord(){
+        return  value.getValue();
+    }
+
+    @Override
+    public String getLeftSide() {
+        return value.getLeftSide();
+    }
+
+    @Override
+    public String getRightSide() {
+        return value.getRightSide();
+    }
+
+    @Override
+    public String toText() {
+        return String.join("", value.getLeftSide(), value.getValue(), value.getRightSide());
     }
 
 }

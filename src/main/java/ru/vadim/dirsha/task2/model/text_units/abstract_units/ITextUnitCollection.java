@@ -12,26 +12,27 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units;
+package ru.vadim.dirsha.task2.model.text_units.abstract_units;
+
+import java.util.List;
 
 /**
  * @author = Vadim Dirsha
  * @date = 08.11.2018
  */
-public class TextUnit<E> extends AbstractTextUnit<E> {
+interface ITextUnitCollection {
 
+    ITextUnit get(int i);
 
-    public TextUnit(String data) {
-        super(data);
-    }
+    boolean add(ITextUnit e);
 
-    @Override
-    public String toText() {
-        return null;
-    }
+    boolean addAll(List<ITextUnit> e);
 
-    @Override
-    public SubTextUnit<E> parseDataToTextUnit(String data) {
-        return null;
-    }
+    void clear();
+
+    boolean isEmpty();
+
+    boolean remove(ITextUnit e);
+
+    int size();
 }
