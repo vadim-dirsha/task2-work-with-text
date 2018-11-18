@@ -23,6 +23,11 @@ public class SubTextUnit<E> {
     private String leftSide;
     private String rightSide;
 
+    public SubTextUnit() {
+        this.leftSide = "";
+        this.rightSide = "";
+    }
+
     public SubTextUnit(E value, String leftSide, String rightSide) {
         this.value = value;
         this.leftSide = leftSide;
@@ -42,7 +47,7 @@ public class SubTextUnit<E> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return value.toString() + leftSide + rightSide;
     }
 }

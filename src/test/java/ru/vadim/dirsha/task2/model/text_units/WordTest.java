@@ -13,8 +13,8 @@ import static org.testng.Assert.assertEquals;
 
 public class WordTest {
 
-    public static String TEST_DATA = "/testdata";
-    public static String TEST_RESULT = "/testresult";
+    public static String TEST_DATA = "/word/testdata";
+    public static String TEST_RESULT = "/word/testresult";
     public static String SPLITER = "\r\n";
 
     public static String utilReadAllFile(InputStream inputStream) throws IOException {
@@ -44,11 +44,17 @@ public class WordTest {
 
             try {
                 temp.add(utilReadAllFile(getClass().getResourceAsStream(TEST_DATA + i)));
+
                 String str = utilReadAllFile(getClass().getResourceAsStream(TEST_RESULT + i));
-                temp.add(new SubTextUnit<String>(str.split(SPLITER)[0],str.split(SPLITER)[1],str.split(SPLITER)[2]));
+                BufferedReader bufferedReader = new BufferedReader(new StringReader(str));
+                String leftSide = bufferedReader.readLine();
+                String word = bufferedReader.readLine();
+                String tempSide = bufferedReader.readLine();
+                String rightSide =  tempSide == null ? "" : tempSide;
+                temp.add(new SubTextUnit<String>(word, leftSide, rightSide));
             } catch (IOException e) {
                 e.printStackTrace();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
