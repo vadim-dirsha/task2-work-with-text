@@ -12,7 +12,7 @@ public class Text extends AbstractTextCollection {
     }
 
     @Override
-    public SubTextUnit<List<ITextUnit>> parseDataToTextUnitCollection(String data) {
+    public SubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data) {
         return null;
     }
 }

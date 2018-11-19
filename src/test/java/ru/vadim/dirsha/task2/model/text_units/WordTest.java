@@ -51,6 +51,7 @@ public class WordTest {
                 String rightSide = tempSide == null ? "" : tempSide;
 
                 temp.add(new SubTextUnit<String>(word, leftSide, rightSide));
+                bufferedReader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
