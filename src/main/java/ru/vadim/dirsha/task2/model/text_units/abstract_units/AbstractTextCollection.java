@@ -28,6 +28,10 @@ public abstract class AbstractTextCollection implements ITextUnit, ITextUnitColl
         this.value = parseDataToTextUnitCollection(data);
     }
 
+    public List<ITextUnit> getCollection() {
+        return value.getValue();
+    }
+
     @Override
     public ITextUnit get(int i) {
         return value.getValue().get(i);
