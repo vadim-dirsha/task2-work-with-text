@@ -19,7 +19,7 @@ public class Word extends AbstractTextUnit {
 
     @Override
     public SubTextUnit parseDataToTextUnit(String data) {
-        SubTextUnit result = new SubTextUnit();
+        SubTextUnit result = new SubTextUnit<String>();
         String leftSide = "";
         String rightSide = "";
         String word = "";
@@ -28,7 +28,7 @@ public class Word extends AbstractTextUnit {
         try {
 
             leftSide = matcher.find() ? matcher.group() : "";
-            if (leftSide != ""){
+            if (!leftSide.equals("")){
                 data = data.replaceFirst(leftSide,"");
             }
 
@@ -38,7 +38,7 @@ public class Word extends AbstractTextUnit {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        result = new SubTextUnit(word, leftSide, rightSide);
+        result = new SubTextUnit<String>(word, leftSide, rightSide);
         return result;
     }
 }

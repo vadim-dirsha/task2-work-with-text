@@ -52,14 +52,15 @@ public class SentenceTest {
 
                 String rightSide = "";
                 if (size == strtemp.length) {
+                    for (int j = 1; j < strtemp.length; j++) {
+                        tempList.add(new Word(strtemp[j]));
+                    }
+
+                } else {
                     for (int j = 1; j < strtemp.length - 1; j++) {
                         tempList.add(new Word(strtemp[j]));
                     }
                     rightSide = strtemp[strtemp.length - 1];
-                } else {
-                    for (int j = 1; j < strtemp.length; j++) {
-                        tempList.add(new Word(strtemp[j]));
-                    }
                 }
 
                 temp.add(new SubTextUnit<List<ITextUnit>>(tempList, leftSide, rightSide));
@@ -77,11 +78,30 @@ public class SentenceTest {
         return object;
     }
 
+
     @Test(dataProvider = "data")
-    public void testParseDataToTextUnitCollection(String data, SubTextUnit<List<ITextUnit>> result) {
+    public void testLeftSide(String data, SubTextUnit<List<ITextUnit>> result) {
         Sentence sentence = new Sentence(data);
         assertEquals(sentence.getLeftSide(), result.getLeftSide());
-        assertEquals(sentence.getCollection(), result.getValue());
+    }
+
+    @Test(dataProvider = "data", dependsOnMethods = "testLeftSide")
+    public void testRightSide(String data, SubTextUnit<List<ITextUnit>> result) {
+        Sentence sentence = new Sentence(data);
         assertEquals(sentence.getRightSide(), result.getRightSide());
+    }
+
+    @Test(dataProvider = "data", dependsOnMethods = "testRightSide")
+    public void testSize(String data, SubTextUnit<List<ITextUnit>> result) {
+        Sentence sentence = new Sentence(data);
+        assertEquals(result.getValue().size(), sentence.size());
+    }
+
+    @Test(dataProvider = "data", dependsOnMethods = "testSize")
+    public void testParseDataToTextUnitCollection(String data, SubTextUnit<List<ITextUnit>> result) {
+        Sentence sentence = new Sentence(data);
+        for (int i = 0; i < result.getValue().size(); i++) {
+            assertEquals(sentence.get(i).toText(), result.getValue().get(i).toText());
+        }
     }
 }
