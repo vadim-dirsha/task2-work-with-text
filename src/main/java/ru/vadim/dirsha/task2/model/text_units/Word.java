@@ -23,9 +23,15 @@ public class Word extends AbstractTextUnit {
         String leftSide = "";
         String rightSide = "";
         String word = "";
+
+        Matcher matcher = leftSidePattern.matcher(data);
         try {
-            Matcher matcher = leftSidePattern.matcher(data);
+
             leftSide = matcher.find() ? matcher.group() : "";
+            if (leftSide != ""){
+                data = data.substring(data.indexOf(leftSide), data.length());
+            }
+
             matcher = rightSidePattern.matcher(data);
             rightSide = matcher.find() ? matcher.group() : "";
             word = data.substring(leftSide.length(), !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length());
