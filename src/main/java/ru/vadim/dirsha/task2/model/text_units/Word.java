@@ -28,13 +28,15 @@ public class Word extends AbstractTextUnit {
         try {
 
             leftSide = matcher.find() ? matcher.group() : "";
-            if (!leftSide.equals("")){
-                data = data.replaceFirst(leftSide,"");
+            if (!leftSide.equals("")) {
+                // FIXME: 19.11.2018 Тут подстава ведь в во всех этих реплейсах сплитах и прочем РЕГЕКСЫ И тут могут быть служебные символы, ухнать как их изолировать
+
+                data = data.replaceFirst(Pattern.quote(leftSide), "");
             }
 
             matcher = rightSidePattern.matcher(data);
             rightSide = matcher.find() ? matcher.group() : "";
-            word = data.substring(0, !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length());
+            word = data.substring(0, !Objects.equals(rightSide, "") ? data.lastIndexOf(rightSide) : data.length());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

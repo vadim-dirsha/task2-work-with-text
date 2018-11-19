@@ -38,8 +38,8 @@ public class Sentence extends AbstractTextCollection {
             matcher = rightSidePattern.matcher(data);
             rightSide = matcher.find() ? matcher.group() : "";
 
-            sentenceArray = data.substring(0, !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length())
-                    .split(" ");
+            data = data.substring(0, !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length());
+            sentenceArray = data.split(" ");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
