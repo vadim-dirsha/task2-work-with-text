@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class Text extends AbstractTextCollection {
 
-    private static String SENTENCE_REG = "[\\.\\!\\?]\\W+$";
+    private static String SENTENCE_REG = "[\\.\\!\\?]|\n\\W+$";
     private static Pattern pattern = Pattern.compile(SENTENCE_REG);
 
     private static String[] delimiters = new String[]{".", "!", "?",};
@@ -44,21 +44,12 @@ public class Text extends AbstractTextCollection {
                 }
 
                 if (tempB.length() > 0) {
-                    if (tempB.charAt(tempB.length() - 1) == '\n') {
+                    if (pattern.matcher(tempB.toString()).find()) {
                         sentences.add(new Sentence(tempB.toString()));
                         tempB = new StringBuilder();
                     }
                 }
-                if (tempB.length() > 1) {
-                    if (tempB.charAt(tempB.length() - 1) == ' ' || tempB.charAt(tempB.length() - 1) == '\t')
-                        if (tempB.charAt(tempB.length() - 2) == '.'
-                                || tempB.charAt(tempB.length() - 2) == '!'
-                                || tempB.charAt(tempB.length() - 2) == '?'
-                                || tempB.charAt(tempB.length() - 2) == '\n') {
-                            sentences.add(new Sentence(tempB.toString()));
-                            tempB = new StringBuilder();
-                        }
-                }
+
             }
 
         }

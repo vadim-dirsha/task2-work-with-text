@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
 public class Sentence extends AbstractTextCollection {
     private static String LEFT_SIDE_REG = "^\\W*";
     private static String RIGHT_SIDE_REG = "\\W*$";
-    private static Pattern leftSidePattern = Pattern.compile(LEFT_SIDE_REG);
-    private static Pattern rightSidePattern = Pattern.compile(RIGHT_SIDE_REG);
+    private static Pattern leftSidePattern = Pattern.compile(LEFT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
+    private static Pattern rightSidePattern = Pattern.compile(RIGHT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
 
     public Sentence(String data) {
         super(data);
