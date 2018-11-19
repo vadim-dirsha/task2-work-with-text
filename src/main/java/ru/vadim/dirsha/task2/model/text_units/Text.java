@@ -4,6 +4,7 @@ import ru.vadim.dirsha.task2.model.text_units.abstract_units.AbstractTextCollect
 import ru.vadim.dirsha.task2.model.text_units.abstract_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text_units.abstract_units.SubTextUnit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Text extends AbstractTextCollection {
@@ -13,6 +14,6 @@ public class Text extends AbstractTextCollection {
 
     @Override
     public SubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data) {
-        return null;
+        return new SubTextUnit<List<ITextUnit>>(new ArrayList<>(), "", "");
     }
 }

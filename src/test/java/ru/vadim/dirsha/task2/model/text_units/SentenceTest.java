@@ -42,7 +42,6 @@ public class SentenceTest {
                 temp.add(readAllFile(getClass().getResourceAsStream(TEST_DATA + i)));
 
                 String str = readAllFile(getClass().getResourceAsStream(TEST_RESULT + i));
-                BufferedReader bufferedReader = new BufferedReader(new StringReader(str));
 
                 int size = str.replaceAll("[^" + DELIMITER + "]", "").length() / DELIMITER.length();
                 String[] strtemp = str.split(DELIMITER);

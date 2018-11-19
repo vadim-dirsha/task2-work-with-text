@@ -7,20 +7,19 @@ import org.testng.annotations.Test;
 import ru.vadim.dirsha.task2.model.text_units.abstract_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text_units.abstract_units.SubTextUnit;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 import static ru.vadim.dirsha.task2.utils.FileLLJava.readAllFile;
 
 public class TextTest {
 
     public static final String DELIMITER = "\r\n";
-    private static String TEST_DATA = "/sentence/testdata";
-    private static String TEST_RESULT = "/sentence/testresult";
+    public static final String TESTRESULT_FILENAME = "/testresult";
+    private static String TEST_DATA = "/text/testdata";
+    private static String TEST_RESULT = "/text/testresult";
 
     @BeforeMethod
     public void setUp() {
@@ -40,31 +39,14 @@ public class TextTest {
             ArrayList<Object> temp = new ArrayList<>();
 
             try {
+                List<String> sentenceList = new ArrayList<>();
                 temp.add(readAllFile(getClass().getResourceAsStream(TEST_DATA + i)));
 
-                String str = readAllFile(getClass().getResourceAsStream(TEST_RESULT + i));
-                BufferedReader bufferedReader = new BufferedReader(new StringReader(str));
-
-                int size = str.replaceAll("[^" + DELIMITER + "]", "").length() / DELIMITER.length();
-                String[] strtemp = str.split(DELIMITER);
-
-                List<ITextUnit> tempList = new ArrayList<>();
-                String leftSide = strtemp[0];
-
-                String rightSide = "";
-                if (size == strtemp.length) {
-                    for (int j = 1; j < strtemp.length; j++) {
-                        tempList.add(new Word(strtemp[j]));
-                    }
-
-                } else {
-                    for (int j = 1; j < strtemp.length - 1; j++) {
-                        tempList.add(new Word(strtemp[j]));
-                    }
-                    rightSide = strtemp[strtemp.length - 1];
+                for (int j = 1; this.getClass().getResource(TEST_RESULT + i + TESTRESULT_FILENAME + j) != null; j++) {
+                    sentenceList.add(readAllFile(getClass().getResourceAsStream(TEST_RESULT + i + TESTRESULT_FILENAME + j)));
                 }
 
-                temp.add(new SubTextUnit<List<ITextUnit>>(tempList, leftSide, rightSide));
+                temp.add(sentenceList);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,30 +61,17 @@ public class TextTest {
         return object;
     }
 
-
     @Test(dataProvider = "data")
-    public void testLeftSide(String data, SubTextUnit<List<ITextUnit>> result) {
-        Sentence sentence = new Sentence(data);
-        assertEquals(sentence.getLeftSide(), result.getLeftSide());
-    }
-
-    @Test(dataProvider = "data", dependsOnMethods = "testLeftSide")
-    public void testRightSide(String data, SubTextUnit<List<ITextUnit>> result) {
-        Sentence sentence = new Sentence(data);
-        assertEquals(sentence.getRightSide(), result.getRightSide());
-    }
-
-    @Test(dataProvider = "data", dependsOnMethods = "testRightSide")
-    public void testSize(String data, SubTextUnit<List<ITextUnit>> result) {
-        Sentence sentence = new Sentence(data);
-        assertEquals(result.getValue().size(), sentence.size());
+    public void testSize(String data, List<String> result) {
+        Text sentence = new Text(data);
+        assertEquals( sentence.size(), result.size());
     }
 
     @Test(dataProvider = "data", dependsOnMethods = "testSize")
-    public void testParseDataToTextUnitCollection(String data, SubTextUnit<List<ITextUnit>> result) {
-        Sentence sentence = new Sentence(data);
-        for (int i = 0; i < result.getValue().size(); i++) {
-            assertEquals(sentence.get(i).toText(), result.getValue().get(i).toText());
+    public void testParseDataToTextUnitCollection(String data, List<String> result) {
+        Text sentence = new Text(data);
+        for (int i = 0; i < result.size(); i++) {
+            assertEquals(sentence.get(i).toText(), result.get(i));
         }
     }
 }
