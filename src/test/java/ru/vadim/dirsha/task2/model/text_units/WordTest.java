@@ -16,10 +16,9 @@ import static ru.vadim.dirsha.task2.utils.FileLLJava.readAllFile;
 
 public class WordTest {
 
+    public static String SPLITER = "\r\n";
     private static String TEST_DATA = "/word/testdata";
     private static String TEST_RESULT = "/word/testresult";
-    public static String SPLITER = "\r\n";
-
 
     @BeforeMethod
     public void setUp() {

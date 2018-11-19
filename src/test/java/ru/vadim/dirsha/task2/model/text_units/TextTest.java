@@ -4,8 +4,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.vadim.dirsha.task2.model.text_units.abstract_units.ITextUnit;
-import ru.vadim.dirsha.task2.model.text_units.abstract_units.SubTextUnit;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,7 +62,7 @@ public class TextTest {
     @Test(dataProvider = "data")
     public void testSize(String data, List<String> result) {
         Text sentence = new Text(data);
-        assertEquals( sentence.size(), result.size());
+        assertEquals(sentence.size(), result.size());
     }
 
     @Test(dataProvider = "data", dependsOnMethods = "testSize")

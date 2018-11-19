@@ -7,9 +7,7 @@ import org.testng.annotations.Test;
 import ru.vadim.dirsha.task2.model.text_units.abstract_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text_units.abstract_units.SubTextUnit;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
