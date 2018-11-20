@@ -26,8 +26,8 @@ public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
         this.value = parseDataToTextUnit(data);
     }
 
-    public String getWord(){
-        return  value.getValue();
+    public String getWord() {
+        return value.getValue();
     }
 
     @Override
@@ -44,5 +44,8 @@ public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
     public String toText() {
         return String.join("", value.getLeftSide(), value.getValue(), value.getRightSide());
     }
+
+    @Override
+    public abstract SubTextUnit<String> parseDataToTextUnit(String data);
 
 }

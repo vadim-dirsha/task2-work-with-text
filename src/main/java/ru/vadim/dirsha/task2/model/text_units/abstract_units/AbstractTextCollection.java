@@ -86,5 +86,6 @@ public abstract class AbstractTextCollection implements ITextUnit, ITextUnitColl
         return result.toString();
     }
 
-
+    @Override
+    public abstract SubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data);
 }
