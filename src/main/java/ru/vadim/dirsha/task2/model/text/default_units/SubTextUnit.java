@@ -12,40 +12,42 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units.abstract_units;
+package ru.vadim.dirsha.task2.model.text.default_units;
 
 /**
  * @author = Vadim Dirsha
- * @date = 08.11.2018
+ * @date = 10.11.2018
  */
-public abstract class AbstractTextUnit implements ITextUnit, ITextUnitCreator {
+public class SubTextUnit<E> {
+    private E value;
+    private String leftSide;
+    private String rightSide;
 
-    protected SubTextUnit<String> value;
-
-    public AbstractTextUnit(String data) {
-        this.value = parseDataToTextUnit(data);
+    public SubTextUnit() {
+        this.leftSide = "";
+        this.rightSide = "";
     }
 
-    public String getWord() {
-        return value.getValue();
+    public SubTextUnit(E value, String leftSide, String rightSide) {
+        this.value = value;
+        this.leftSide = leftSide;
+        this.rightSide = rightSide;
     }
 
-    @Override
+    public E getValue() {
+        return value;
+    }
+
     public String getLeftSide() {
-        return value.getLeftSide();
+        return leftSide;
     }
 
-    @Override
     public String getRightSide() {
-        return value.getRightSide();
+        return rightSide;
     }
 
     @Override
-    public String toText() {
-        return String.join("", value.getLeftSide(), value.getValue(), value.getRightSide());
+    public String toString() {
+        return value.toString() + leftSide + rightSide;
     }
-
-    @Override
-    public abstract SubTextUnit<String> parseDataToTextUnit(String data);
-
 }

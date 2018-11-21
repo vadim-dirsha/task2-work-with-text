@@ -1,7 +1,7 @@
-package ru.vadim.dirsha.task2.model.text_units;
+package ru.vadim.dirsha.task2.model.text.custom_text_units;
 
-import ru.vadim.dirsha.task2.model.text_units.abstract_units.AbstractTextUnit;
-import ru.vadim.dirsha.task2.model.text_units.abstract_units.SubTextUnit;
+import ru.vadim.dirsha.task2.model.text.default_units.AbstractTextUnit;
+import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
 
 import java.util.Objects;
 import java.util.regex.Matcher;

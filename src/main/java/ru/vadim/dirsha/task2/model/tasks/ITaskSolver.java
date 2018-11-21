@@ -12,12 +12,12 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
-package ru.vadim.dirsha.task2.model.text_units.abstract_units;
+package ru.vadim.dirsha.task2.model.tasks;
 
 /**
  * @author = Vadim Dirsha
- * @date = 08.11.2018
+ * @date = 21.11.2018
  */
-interface ITextUnitCreator {
-    SubTextUnit parseDataToTextUnit(String data);
+public interface ITaskSolver<E> {
+    public E solve();
 }
