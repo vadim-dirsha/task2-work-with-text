@@ -1,4 +1,4 @@
-package ru.vadim.dirsha.task2.model.text.custom_text_units;
+package ru.vadim.dirsha.task2.model.text.custom_units;
 
 import ru.vadim.dirsha.task2.model.text.default_units.AbstractTextCollection;
 import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
@@ -11,18 +11,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Sentence extends AbstractTextCollection {
-    private static String LEFT_SIDE_REG = "^\\W*";
-    private static String RIGHT_SIDE_REG = "\\W*$";
+    private static final String LEFT_SIDE_REG = "^\\W*";
+    private static final String RIGHT_SIDE_REG = "\\W*$";
     private static Pattern leftSidePattern = Pattern.compile(LEFT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
     private static Pattern rightSidePattern = Pattern.compile(RIGHT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
-
     public Sentence(String data) {
         super(data);
     }
 
     @Override
-    public SubTextUnit parseDataToTextUnit(String data) {
-        SubTextUnit result = new SubTextUnit<List<ITextUnit>>();
+    public SubTextUnit<List<ITextUnit>> parseDataToTextUnit(String data) {
+
         String leftSide = "";
         String rightSide = "";
         String[] sentenceArray = new String[]{};
@@ -41,21 +40,21 @@ public class Sentence extends AbstractTextCollection {
             data = data.substring(0, !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length());
             sentenceArray = data.split(" ");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         ArrayList<ITextUnit> words = new ArrayList<>();
         for (String aSentenceArray : sentenceArray) {
             words.add(new Word(aSentenceArray));
         }
-        result = new SubTextUnit<List<ITextUnit>>(words, leftSide, rightSide);
-        return result;
+
+        return new SubTextUnit<>(words, leftSide, rightSide);
     }
 
     @Override
     public String toText() {
         StringBuilder result = new StringBuilder();
         for (ITextUnit unit : value.getValue()) {
-            result.append(unit.toText() + " ");
+            result.append(unit.toText()).append(" ");
         }
         return String.join("", value.getLeftSide(), result.toString().substring(0, result.toString().length() - 1), value.getRightSide());
     }

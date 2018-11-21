@@ -4,7 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.vadim.dirsha.task2.model.text.custom_text_units.Text;
+import ru.vadim.dirsha.task2.model.text.custom_units.Text;
 import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
 
 import java.io.IOException;
@@ -46,10 +46,10 @@ public class Task6Test {
             try {
                 List<String> sentenceList = new ArrayList<>();
                 temp.add(readAllFile(getClass().getResourceAsStream(TEST_DATA + i)));
-                temp.add(Arrays.asList(
+                temp.add(new ArrayList<>(Arrays.asList(
                         readAllFile(getClass().getResourceAsStream(TEST_RESULT + i))
                                 .split(DELIMITER)
-                        )
+                        ))
                 );
             } catch (IOException e) {
                 e.printStackTrace();
