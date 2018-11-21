@@ -55,7 +55,9 @@ public class Task6 implements ITaskSolver<List<String>> {
         }
         for (ITextUnit unit : list) {
             if (unit instanceof AbstractTextUnit) {
-                words.add(((AbstractTextUnit) unit).getWord());
+                if (!((AbstractTextUnit) unit).getWord().equals("")) {
+                    words.add(((AbstractTextUnit) unit).getWord());
+                }
             }
         }
         return words;

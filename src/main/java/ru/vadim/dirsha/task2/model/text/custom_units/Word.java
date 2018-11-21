@@ -12,9 +12,19 @@ public class Word extends AbstractTextUnit {
     private static final String RIGHT_SIDE_REG = "\\W*$";
     private static Pattern leftSidePattern = Pattern.compile(LEFT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
     private static Pattern rightSidePattern = Pattern.compile(RIGHT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
+    private String delimiter = "";
+
+    public Word(String data, String delimiter) {
+        super(data);
+        this.delimiter = delimiter;
+    }
 
     public Word(String data) {
         super(data);
+    }
+
+    public String getDelimiter() {
+        return delimiter;
     }
 
     @Override
