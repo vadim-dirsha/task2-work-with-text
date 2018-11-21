@@ -40,6 +40,7 @@ public class Sentence extends AbstractTextCollection {
             data = data.substring(0, !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length());
             sentenceArray = data.split(" ");
         } catch (Exception e) {
+            //FIXME tada
             System.err.println(e.getMessage());
         }
         ArrayList<ITextUnit> words = new ArrayList<>();
