@@ -1,5 +1,6 @@
 package ru.vadim.dirsha.task2.model.text.custom_units;
 
+import org.apache.log4j.Logger;
 import ru.vadim.dirsha.task2.model.text.default_units.AbstractTextCollection;
 import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
@@ -14,8 +15,10 @@ import java.util.regex.Pattern;
 public class Sentence extends AbstractTextCollection {
     private static final String LEFT_SIDE_REG = "^\\W*";
     private static final String RIGHT_SIDE_REG = "\\W*$";
+    private static final Logger logger = Logger.getLogger(Sentence.class);
     private static Pattern leftSidePattern = Pattern.compile(LEFT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
     private static Pattern rightSidePattern = Pattern.compile(RIGHT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
+
 
     public Sentence(String data) {
         super(data);
@@ -42,19 +45,18 @@ public class Sentence extends AbstractTextCollection {
             data = data.substring(0, !Objects.equals(rightSide, "") ? data.indexOf(rightSide) : data.length());
             sentenceArray = data.split(" ");
         } catch (Exception e) {
-            //FIXME tada
-            System.err.println(e.getMessage());
+            logger.error(e.getMessage(), e);
         }
         ArrayList<ITextUnit> words = new ArrayList<>();
         for (String aSentenceArray : sentenceArray) {
             if (aSentenceArray.contains("\r\n")) {
-                String [] tempSplit =aSentenceArray.split("\r\n");
+                String[] tempSplit = aSentenceArray.split("\r\n");
                 Arrays.asList(tempSplit)
                         .stream()
-                        .filter(u-> !u.equals(tempSplit[tempSplit.length - 1]))
+                        .filter(u -> !u.equals(tempSplit[tempSplit.length - 1]))
                         .peek(u -> words.add(new Word(u, "\r\n"))
                         ).count();
-                words.add(new Word(tempSplit[tempSplit.length-1], " "));
+                words.add(new Word(tempSplit[tempSplit.length - 1], " "));
             } else {
                 words.add(new Word(aSentenceArray, " "));
             }

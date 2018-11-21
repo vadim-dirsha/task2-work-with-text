@@ -1,5 +1,6 @@
 package ru.vadim.dirsha.task2.model.text.custom_units;
 
+import org.apache.log4j.Logger;
 import ru.vadim.dirsha.task2.model.text.default_units.AbstractTextUnit;
 import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
 
@@ -10,6 +11,7 @@ import java.util.regex.Pattern;
 public class Word extends AbstractTextUnit {
     private static final String LEFT_SIDE_REG = "^\\W*";
     private static final String RIGHT_SIDE_REG = "\\W*$";
+    private static final Logger logger = Logger.getLogger(Word.class);
     private static Pattern leftSidePattern = Pattern.compile(LEFT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
     private static Pattern rightSidePattern = Pattern.compile(RIGHT_SIDE_REG, Pattern.UNICODE_CHARACTER_CLASS);
     private String delimiter = "";
@@ -45,7 +47,7 @@ public class Word extends AbstractTextUnit {
             rightSide = matcher.find() ? matcher.group() : "";
             word = data.substring(0, !Objects.equals(rightSide, "") ? data.lastIndexOf(rightSide) : data.length());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage(), e);
         }
         return new SubTextUnit<>(word, leftSide, rightSide);
     }
