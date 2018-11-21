@@ -1,9 +1,11 @@
 package ru.vadim.dirsha.task2;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import ru.vadim.dirsha.task2.model.tasks.ITaskSolver;
 import ru.vadim.dirsha.task2.model.tasks.Task6;
 import ru.vadim.dirsha.task2.model.text.custom_units.Text;
+import ru.vadim.dirsha.task2.model.text.custom_units.Word;
 import ru.vadim.dirsha.task2.utils.FileLLJava;
 import ru.vadim.dirsha.task2.utils.InputStreamHelper;
 
@@ -16,8 +18,8 @@ import java.util.List;
 public class App {
 
     private static final Logger logger = Logger.getLogger(App.class);
-
     public static void main(String[] args) {
+        BasicConfigurator.configure();
         logger.info("App start");
         ITaskSolver task6 = null;
         try {
