@@ -25,6 +25,10 @@ import java.util.*;
  * @date = 21.11.2018
  */
 public class Task6 implements ITaskSolver<List<String>> {
+    private static final Comparator<String> ALPHABETICAL_ORDER = (str1, str2) -> {
+        int res = String.CASE_INSENSITIVE_ORDER.compare(str1, str2);
+        return (res != 0) ? res : str1.compareTo(str2);
+    };
     private ITextUnit value;
 
     public Task6(ITextUnit value) {
@@ -61,30 +65,22 @@ public class Task6 implements ITaskSolver<List<String>> {
     public List<String> solve() {
         List<String> words = getWords(value);
 
-        Map<Character, List<String>> map = new HashMap<>();
-        Set<Character> keys = new HashSet<>();
+        Map<String, List<String>> map = new HashMap<>();
+        Set<String> keys = new HashSet<>();
 
-        words.forEach(unit -> keys.add(unit.charAt(0)));
+        words.forEach(unit -> keys.add(unit.charAt(0) + ""));
         keys.forEach(unit -> map.put(unit, new ArrayList<>()));
 
-        words.forEach(unit -> map.get(unit.charAt(0)).add(unit));
+        words.forEach(unit -> map.get(unit.charAt(0) + "").add(unit));
         map.forEach((k, v) -> v.sort(Comparator.comparing(String::toString)));
 
-        ArrayList<Character> sortKeys = new ArrayList<>(keys);
-        sortKeys.sort(Comparator.comparing(Character::charValue));
+        ArrayList<String> sortKeys = new ArrayList<>(keys);
+        sortKeys.sort(ALPHABETICAL_ORDER);
 
         List<String> result = new ArrayList<>();
         sortKeys.forEach(u -> result.add(String.join(" ", map.get(u))));
 
         return result;
-
-//        return map.values()
-//                .stream()
-//                .map(v -> {
-//                    StringBuilder temp = new StringBuilder();
-//                    v.forEach(unit -> temp.append(unit).append(" "));
-//                    return temp.toString().substring(0, temp.toString().length() - 1);
-//                }).collect(Collectors.toList());
 
     }
 }
