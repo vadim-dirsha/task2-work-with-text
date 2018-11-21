@@ -1,22 +1,17 @@
-package ru.vadim.dirsha.task2.model.text.custom_text_units;
+package ru.vadim.dirsha.task2.model.text.custom_units;
 
 import ru.vadim.dirsha.task2.model.text.default_units.AbstractTextCollection;
 import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
 
 public class Text extends AbstractTextCollection {
 
-    private static String SENTENCE_REG = "[\\.\\!\\?]|\n\\W+$";
+    private static final String SENTENCE_REG = "[.!?]|\n\\W+$";
     private static Pattern pattern = Pattern.compile(SENTENCE_REG);
-
-    private static String[] delimiters = new String[]{".", "!", "?",};
-    private static HashSet<String> set = new HashSet<>(Arrays.asList(delimiters));
 
 
     public Text(String data) {
@@ -31,7 +26,6 @@ public class Text extends AbstractTextCollection {
 
         StringBuilder dataB = new StringBuilder();
         dataB.append(data);
-        data = "";
 
         StringBuilder tempB = new StringBuilder();
 
@@ -43,12 +37,12 @@ public class Text extends AbstractTextCollection {
                     i = 0;
                 }
 
-                if (tempB.length() > 0) {
-                    if (pattern.matcher(tempB.toString()).find()) {
-                        sentences.add(new Sentence(tempB.toString()));
-                        tempB = new StringBuilder();
-                    }
+
+                if (pattern.matcher(tempB.toString()).find()) {
+                    sentences.add(new Sentence(tempB.toString()));
+                    tempB = new StringBuilder();
                 }
+
 
             }
 
@@ -57,8 +51,6 @@ public class Text extends AbstractTextCollection {
             sentences.add(new Sentence(tempB.toString() + dataB.toString()));
         }
 
-        SubTextUnit result = new SubTextUnit<List<ITextUnit>>();
-        result = new SubTextUnit<List<ITextUnit>>(sentences, leftSide, rightSide);
-        return result;
+        return new SubTextUnit<>(sentences, leftSide, rightSide);
     }
 }
