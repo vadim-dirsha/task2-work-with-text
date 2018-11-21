@@ -6,8 +6,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
-import ru.vadim.dirsha.task2.model.text.custom_text_units.Sentence;
-import ru.vadim.dirsha.task2.model.text.custom_text_units.Word;
+import ru.vadim.dirsha.task2.model.text.custom_units.Sentence;
+import ru.vadim.dirsha.task2.model.text.custom_units.Word;
 
 import java.io.IOException;
 import java.util.ArrayList;

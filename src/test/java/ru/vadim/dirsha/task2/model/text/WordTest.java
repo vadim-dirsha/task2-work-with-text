@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
-import ru.vadim.dirsha.task2.model.text.custom_text_units.Word;
+import ru.vadim.dirsha.task2.model.text.custom_units.Word;
 
 import java.io.BufferedReader;
 import java.io.IOException;
