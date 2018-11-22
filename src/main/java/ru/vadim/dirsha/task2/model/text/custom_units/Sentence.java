@@ -29,12 +29,17 @@ public class Sentence extends AbstractTextCollection {
         Pattern pattern = Pattern.compile(regex);
         ArrayList<Pair<String, String>> result = new ArrayList<>();
         Matcher matcher = pattern.matcher(data);
-        String[] tempStrs = data.split(regex);
+        ArrayList<String> del = new ArrayList<>();
+        while (matcher.find()) {
+            del.add(matcher.group());
+        }
+        StringBuilder temp = new StringBuilder(data);
+        del.forEach(u -> temp.replace(temp.indexOf(u) + 1, temp.indexOf(u) + u.length() - 1, " "));
 
-        for (int i = 0; matcher.find(); i++) {
-            String temp = matcher.group();
-            tempStrs[i + 1] =  temp.charAt(temp.length() - 1) + tempStrs[i + 1];
-            result.add(new Pair<>(tempStrs[i] + temp.charAt(0), temp.substring(1, temp.length() - 1)));
+        String[] tempStrs = temp.toString().split(" ");
+
+        for (int i = 0; i < del.size(); i++) {
+            result.add(new Pair<>(tempStrs[i], del.get(i).substring(1, del.get(i).length() - 1)));
         }
 
         result.add(new Pair<>(tempStrs[tempStrs.length - 1], " "));
