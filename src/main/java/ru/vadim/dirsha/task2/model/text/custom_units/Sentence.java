@@ -1,12 +1,12 @@
 package ru.vadim.dirsha.task2.model.text.custom_units;
 
+import javafx.util.Pair;
 import org.apache.log4j.Logger;
 import ru.vadim.dirsha.task2.model.text.default_units.AbstractTextCollection;
 import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
 import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -22,6 +22,25 @@ public class Sentence extends AbstractTextCollection {
 
     public Sentence(String data) {
         super(data);
+    }
+
+    public static List<Pair<String, String>> delimiterSearch(String data) {
+        String regex = "\\w[^\\w-]+\\w";
+        Pattern pattern = Pattern.compile(regex);
+        ArrayList<Pair<String, String>> result = new ArrayList<>();
+        Matcher matcher = pattern.matcher(data);
+        String[] tempStrs = data.split(regex);
+
+        for (int i = 0; matcher.find(); i++) {
+            String temp = matcher.group();
+            tempStrs[i + 1] =  temp.charAt(temp.length() - 1) + tempStrs[i + 1];
+            result.add(new Pair<>(tempStrs[i] + temp.charAt(0), temp.substring(1, temp.length() - 1)));
+        }
+
+        result.add(new Pair<>(tempStrs[tempStrs.length - 1], " "));
+
+
+        return result;
     }
 
     @Override
@@ -49,17 +68,19 @@ public class Sentence extends AbstractTextCollection {
         }
         ArrayList<ITextUnit> words = new ArrayList<>();
         for (String aSentenceArray : sentenceArray) {
-            if (aSentenceArray.contains("\r\n")) {
-                String[] tempSplit = aSentenceArray.split("\r\n");
-                Arrays.asList(tempSplit)
-                        .stream()
-                        .filter(u -> !u.equals(tempSplit[tempSplit.length - 1]))
-                        .peek(u -> words.add(new Word(u, "\r\n"))
-                        ).count();
-                words.add(new Word(tempSplit[tempSplit.length - 1], " "));
-            } else {
-                words.add(new Word(aSentenceArray, " "));
-            }
+            ArrayList<Pair<String, String>> pair = new ArrayList<>(delimiterSearch(aSentenceArray));
+            pair.forEach(u -> words.add(new Word(u.getKey(), u.getValue())));
+//            if (aSentenceArray.contains("\r\n")) {
+//                String[] tempSplit = aSentenceArray.split("\r\n");
+//                Arrays.asList(tempSplit)
+//                        .stream()
+//                        .filter(u -> !u.equals(tempSplit[tempSplit.length - 1]))
+//                        .peek(u -> words.add(new Word(u, "\r\n"))
+//                        ).count();
+//                words.add(new Word(tempSplit[tempSplit.length - 1], " "));
+//            } else {
+//                words.add(new Word(aSentenceArray, " "));
+//            }
         }
 
         return new SubTextUnit<>(words, leftSide, rightSide);

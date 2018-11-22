@@ -4,10 +4,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
-import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
 import ru.vadim.dirsha.task2.model.text.custom_units.Sentence;
 import ru.vadim.dirsha.task2.model.text.custom_units.Word;
+import ru.vadim.dirsha.task2.model.text.default_units.ITextUnit;
+import ru.vadim.dirsha.task2.model.text.default_units.SubTextUnit;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -100,7 +100,8 @@ public class SentenceTest {
     public void testParseDataToTextUnitCollection(String data, SubTextUnit<List<ITextUnit>> result) {
         Sentence sentence = new Sentence(data);
         for (int i = 0; i < result.getValue().size(); i++) {
-            assertEquals(sentence.get(i).toText(), result.getValue().get(i).toText());
+            assertEquals(sentence.get(i).toText() + (!((Word) sentence.get(i)).getDelimiter().equals(" ") ? ((Word) sentence.get(i)).getDelimiter() : ""),
+                    result.getValue().get(i).toText());
         }
     }
 }
