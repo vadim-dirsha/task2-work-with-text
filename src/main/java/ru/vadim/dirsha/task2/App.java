@@ -32,6 +32,8 @@ public class App {
             result = ((Task6) task6).solve();
             result.forEach(System.out::println);
         }
+
+        //FIXME парсер должен был быть гдето в утилах, АУТ ПУТЫ в тестах
         logger.info("App end");
     }
 }
